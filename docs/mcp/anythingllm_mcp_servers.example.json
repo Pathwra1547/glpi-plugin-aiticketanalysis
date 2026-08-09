@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "glpi-readonly": {
+      "command": "node",
+      "args": [
+        "/app/server/storage/plugins/mcp-glpi-runtime/node_modules/mcp-glpi/dist/index.js"
+      ],
+      "env": {
+        "GLPI_URL": "http://your-glpi-host",
+        "GLPI_APP_TOKEN": "YOUR_GLPI_APP_TOKEN",
+        "GLPI_USER_TOKEN": "YOUR_GLPI_READONLY_USER_TOKEN"
+      },
+      "anythingllm": {
+        "autoStart": true
+      }
+    }
+  }
+}

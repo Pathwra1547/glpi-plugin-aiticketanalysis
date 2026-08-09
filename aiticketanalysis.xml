@@ -1,0 +1,46 @@
+<root>
+  <name>AI Ticket Analysis</name>
+  <key>aiticketanalysis</key>
+  <state>stable</state>
+  <logo></logo>
+  <description>
+    <short>
+      <ru>AI-анализ заявок через AnythingLLM + RAG + MCP GLPI</ru>
+      <en>AI ticket analysis via AnythingLLM + RAG + MCP GLPI</en>
+    </short>
+    <long>
+      <ru>Добавляет на заявку кнопку AI-анализа через AnythingLLM: контекст заявки, вложения/OCR, RAG.</ru>
+      <en>Adds an AI analysis button via AnythingLLM: ticket context, attachments/OCR, RAG.</en>
+    </long>
+  </description>
+  <homepage>https://github.com/Marat-209/glpi-plugin-aiticketanalysis</homepage>
+  <download></download>
+  <issues>https://github.com/Marat-209/glpi-plugin-aiticketanalysis/issues</issues>
+  <readme>https://github.com/Marat-209/glpi-plugin-aiticketanalysis/blob/main/README.md</readme>
+  <authors>
+    <author>AI Ticket Analysis contributors</author>
+  </authors>
+  <versions>
+    <version>
+      <num>2.1.1</num>
+      <compatibility>~11.0.0</compatibility>
+      <download_url></download_url>
+    </version>
+  </versions>
+  <langs>
+    <lang>ru_RU</lang>
+  </langs>
+  <license>GPLv3+</license>
+  <tags>
+    <ru>
+      <tag>AI</tag>
+      <tag>AnythingLLM</tag>
+      <tag>RAG</tag>
+    </ru>
+    <en>
+      <tag>AI</tag>
+      <tag>AnythingLLM</tag>
+      <tag>RAG</tag>
+    </en>
+  </tags>
+</root>
