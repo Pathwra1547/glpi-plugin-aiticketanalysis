@@ -472,35 +472,43 @@ class PluginAiticketanalysisAnalyzer
     {
         global $DB;
         $out = [];
-        $it = $DB->request([
-            'SELECT' => ['glpi_tickets.id', 'glpi_tickets.name', 'glpi_tickets.status', 'glpi_tickets.date', 'glpi_tickets.solvedate'],
-            'FROM'   => 'glpi_tickets',
-            'INNER JOIN' => [
-                'glpi_tickets_users' => [
-                    'ON' => [
-                        'glpi_tickets_users' => 'tickets_id',
-                        'glpi_tickets'       => 'id',
-                        ['AND' => ['glpi_tickets_users.type' => CommonITILActor::REQUESTER]],
+        try {
+            $it = $DB->request([
+                'SELECT' => ['glpi_tickets.id', 'glpi_tickets.name', 'glpi_tickets.status', 'glpi_tickets.date', 'glpi_tickets.solvedate'],
+                'FROM'   => 'glpi_tickets',
+                'INNER JOIN' => [
+                    'glpi_tickets_users' => [
+                        'ON' => [
+                            'glpi_tickets_users' => 'tickets_id',
+                            'glpi_tickets'       => 'id',
+                            ['AND' => ['glpi_tickets_users.type' => CommonITILActor::REQUESTER]],
+                        ],
                     ],
                 ],
-            ],
-            // Без ограничения по сущностям в контекст попадут заявки чужих организаций
-            'WHERE' => [
-                'glpi_tickets_users.users_id' => $users_id,
-                'glpi_tickets.is_deleted'     => 0,
-                ['NOT' => ['glpi_tickets.id' => $exclude_id]],
-            ] + getEntitiesRestrictCriteria('glpi_tickets', '', '', true),
-            'ORDER' => 'glpi_tickets.date DESC',
-            'LIMIT' => $limit,
-        ]);
-        foreach ($it as $row) {
-            $out[] = [
-                'id'     => (int)$row['id'],
-                'name'   => $row['name'],
-                'status' => CommonITILObject::getStatus($row['status']),
-                'date'   => $row['date'],
-                'solved' => $row['solvedate'] ?? '',
-            ];
+                // Без ограничения по сущностям в контекст попадут заявки чужих организаций.
+                // Рекурсию не запрашиваем: у glpi_tickets нет колонки is_recursive, и запрос
+                // падал у всех, кому сущности реально ограничены (не суперадмин)
+                'WHERE' => [
+                    'glpi_tickets_users.users_id' => $users_id,
+                    'glpi_tickets.is_deleted'     => 0,
+                    ['NOT' => ['glpi_tickets.id' => $exclude_id]],
+                ] + getEntitiesRestrictCriteria('glpi_tickets', '', '', false),
+                'ORDER' => 'glpi_tickets.date DESC',
+                'LIMIT' => $limit,
+            ]);
+            foreach ($it as $row) {
+                $out[] = [
+                    'id'     => (int)$row['id'],
+                    'name'   => $row['name'],
+                    'status' => CommonITILObject::getStatus($row['status']),
+                    'date'   => $row['date'],
+                    'solved' => $row['solvedate'] ?? '',
+                ];
+            }
+        } catch (Throwable $e) {
+            // История заявителя — необязательный блок контекста: анализ продолжаем без неё
+            self::log('user ticket history failed: ' . $e->getMessage());
+            return [];
         }
         return $out;
     }
